@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-12">  
+        
+  <%= form_with(model: website, local: true) do |form| %>
+  <% if website.errors.any? %>
+
+      
+  <div id="error_explanation">
+   
+      <div class="alert alert-danger">
+      <strong><%= pluralize(website.errors.count, "error") %> prohibited this website from being saved:</strong>
+<hr>
+      <ul>
+      <% website.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+</div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :weburl %>
+    <%= form.text_field :weburl, id: :website_weburl, class: 'form-control', :placeholder => "Paste complete website URL" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :website_email, class: 'form-control', :placeholder => "Fill your e-mail address, please" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-success" %>
+  </div>
+  
+  <hr>
+<% end %>
+    </div>
+    </div>
