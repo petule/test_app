@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :websites
-  root 'websites#index'
+  resources :websites, only: %i[new index create]
+  root 'websites#new'
 end
