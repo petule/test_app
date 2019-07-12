@@ -16,4 +16,6 @@ class Website < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence:   true, length: { maximum: 180 },
                     format:     { with: VALID_EMAIL_REGEX }
+
+  scope :by_created_desc, -> { order('created_at desc') }
 end

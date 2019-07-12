@@ -1,32 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Websites</h1>
-<h2>Send website url</h2>
-
-<%= render 'form', website: @website %>
 
 <table>
   <thead>
     <tr>
       <th>Website url</th>
       <th>E-mail</th>
-      <th colspan="3"></th>
+      <th>Location</th>
+      <th>Created at</th>
     </tr>
   </thead>
 
   <tbody>
     <% @websites.each do |website| %>
       <tr>
-        <td><%= website.weburl %></td>
+        <td><%= website.url %></td>
         <td><%= website.email %></td>
-        <td><%= link_to 'Show', website %></td>
-        <td><%= link_to 'Edit', edit_website_path(website) %></td>
-        <td><%= link_to 'Destroy', website, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td></td>
+        <td><%= website.created_at %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Website', new_website_path %>
