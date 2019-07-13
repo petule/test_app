@@ -7,6 +7,7 @@
     <tr>
       <th>Website url</th>
       <th>E-mail</th>
+      <th>ip</th>
       <th>Location</th>
       <th>Created at</th>
     </tr>
@@ -17,7 +18,8 @@
       <tr>
         <td><%= website.url %></td>
         <td><%= website.email %></td>
-        <td></td>
+        <td><%= website.ip %></td>
+        <td><%= website.location_info %></td>
         <td><%= website.created_at %></td>
       </tr>
     <% end %>

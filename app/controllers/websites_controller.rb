@@ -18,7 +18,7 @@ class WebsitesController < ApplicationController
 
     respond_to do |format|
       if @website.save
-        #TODO here mailer
+        WebsiteMailer.url_info(@website).deliver_later
         format.html { redirect_to websites_path, notice: 'Website was successfully created.' }
         format.json { render :show, status: :created, location: @website }
       else
@@ -31,6 +31,6 @@ class WebsitesController < ApplicationController
   private
 
   def website_params
-    params.require(:website).permit(:url, :email)
+    params.require(:website).permit(:url, :email).merge({ ip: request.remote_ip })
   end
 end

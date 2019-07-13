@@ -1,3 +1,8 @@
 class WebsiteMailer < ApplicationMailer
-  #TODO mailer
+  default from: 'notifications@example.com'
+
+  def url_info(website)
+    @website = website
+    mail(to: website.email, subject: 'Website info')
+  end
 end

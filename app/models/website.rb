@@ -1,7 +1,6 @@
 class Website < ApplicationRecord
-  
   before_save { url.downcase! }
-
+  after_save :set_geo_locations
   # standard validation
   validates :url, url: true
 
@@ -18,4 +17,20 @@ class Website < ApplicationRecord
                     format:     { with: VALID_EMAIL_REGEX }
 
   scope :by_created_desc, -> { order('created_at desc') }
+
+  def location_info
+    "#{city} #{country}"
+  end
+
+  def set_geo_locations
+    begin
+      geo = GeoIP.new(Rails.root.join('geolite/GeoLiteCity.dat')).country(self.url.remove('https://').remove('/'))
+      self.ip = geo[:ip]
+      self.city = geo[:city_name]
+      self.country = geo[:country_name]
+      save
+    rescue Exception => e
+      puts e.inspect
+    end
+  end
 end
